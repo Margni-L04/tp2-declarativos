@@ -1,0 +1,473 @@
+body {
+    font-family: 'Inter', sans-serif; /* Usamos una fuente más moderna */
+    margin: 0;
+    background-color: #e0f2f7; /* Un azul claro suave para el fondo */
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Este es el estilo por defecto que centra verticalmente */
+    min-height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+}
+
+h1 {
+    color: #00796b; /* Un verde azulado oscuro para el título principal */
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.container {
+    max-width: 900px; /* Un poco más ancho */
+    margin: 30px auto;
+    background: linear-gradient(145deg, #ffffff, #f0f8ff); /* Degradado suave */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+    border: 1px solid #dcdcdc;
+    animation: fadeIn 1s ease-out; /* Animación de aparición */
+    position: relative; /* Necesario para posicionar el botón superior */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.input-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Espacio más grande */
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #f9fdfd;
+    border-radius: 10px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.input-section label {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #004d40; /* Verde azulado oscuro */
+}
+
+.input-section input[type="number"] {
+    padding: 12px; /* Más padding */
+    border: 1px solid #a7d9e2; /* Borde suave */
+    border-radius: 8px; /* Más redondeado */
+    font-size: 1.1em;
+    width: 120px;
+    text-align: center;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.input-section input[type="number"]:focus {
+    border-color: #00796b;
+    box-shadow: 0 0 8px rgba(0, 121, 107, 0.3);
+    outline: none;
+}
+
+.input-section button {
+    background: linear-gradient(45deg, #3498db, #2980b9); /* Degradado en el botón */
+    color: white;
+    padding: 12px 25px; /* Más padding */
+    border: none;
+    border-radius: 8px; /* Más redondeado */
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.input-section button:hover {
+    background: linear-gradient(45deg, #2980b9, #3498db);
+    transform: translateY(-2px); /* Efecto de levitación */
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+.solution-section h2 {
+    text-align: center;
+    color: #004d40;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.solution-list {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    background-color: #fcfcfc;
+    border-radius: 10px;
+    max-height: 450px; /* Un poco más de altura */
+    overflow-y: auto;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+.solution-item {
+    margin-bottom: 20px; /* Más espacio entre soluciones */
+    padding: 15px;
+    border: 1px solid #b2dfdb; /* Borde más distintivo */
+    background-color: #e0f2f1; /* Fondo suave para cada solución */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.solution-item:hover {
+    transform: translateY(-3px); /* Pequeño efecto al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.solution-item:last-child {
+    margin-bottom: 0;
+}
+
+.solution-item h3 {
+    color: #00796b;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+    border-bottom: 1px dashed #a7d9e2;
+    padding-bottom: 5px;
+}
+
+.solution-item pre {
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em; /* Tamaño de fuente ligeramente mayor */
+    margin: 0;
+    color: #555;
+}
+
+.no-solutions {
+    text-align: center;
+    color: #d32f2f; /* Rojo más oscuro */
+    font-style: italic;
+    padding: 20px;
+    border: 1px solid #ef9a9a;
+    border-radius: 10px;
+    background-color: #ffebee;
+    font-weight: bold;
+}
+
+.loading-message {
+    text-align: center;
+    font-style: italic;
+    color: #00796b;
+    margin-top: 20px;
+    font-size: 1.1em;
+    animation: pulse 1.5s infinite ease-in-out; /* Animación de pulsación */
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+/* --- Estilos para la página principal (index.html) --- */
+.problem-description {
+    background-color: #e0f2f7; /* Un fondo suave para la descripción */
+    padding: 20px 25px;
+    border-left: 6px solid #26a69a; /* Borde verde azulado distintivo */
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-size: 1.1em;
+}
+
+.problem-description p, .problem-description ul {
+    margin-bottom: 12px;
+    line-height: 1.7;
+    color: #444;
+}
+
+.problem-description ul {
+    list-style: none; /* Quitamos el estilo de lista por defecto */
+    padding-left: 0;
+}
+
+.problem-description li {
+    margin-bottom: 8px;
+    padding-left: 0; /* Ajustado a 0 porque ya no hay ícono al lado */
+    position: relative;
+}
+
+.problem-description li::before {
+    /* Se elimina la estrella */
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+.scenario-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch; /* Hace que los elementos hijos se estiren para llenar la altura del contenedor */
+    background-color: #fdfdfd;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+    min-height: 250px; /* Asegura una altura mínima */
+    position: relative; /* Para posicionar la balsa más precisamente */
+    overflow: hidden; /* Para que la balsa no se salga si es muy grande */
+}
+
+.bank {
+    background: linear-gradient(to top, #7cb342, #aed581); /* Degradado verde para la tierra */
+    border: 2px solid #558b2f;
+    border-radius: 15px;
+    padding: 20px; /* Padding vertical para el contenido */
+    width: 30%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Alinear contenido abajo */
+    align-items: center;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1; /* Para que los bancos estén por encima del río en el borde */
+}
+
+.river {
+    background: linear-gradient(to bottom, #a7d9e2, #64b5f6); /* Degradado azul para el agua, un poco más claro */
+    border: 1px solid #4fc3f7; /* Borde más sutil */
+    padding: 10px; /* Menor padding vertical para que se vea "menos grueso" */
+    border-radius: 15px;
+    width: 40%; /* El río es un poco más ancho */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    margin: 0 15px; /* Espacio entre los bancos y el río */
+    z-index: 0; /* Para que el río esté por debajo de los bancos en el borde */
+    overflow: hidden; /* Asegura que la animación de las olas no se desborde */
+}
+
+/* --- Efecto de olas para el río --- */
+.river::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; /* El doble de ancho para permitir el desplazamiento */
+    height: 100%;
+    background-image: linear-gradient(to right,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.4) 25%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.4) 75%,
+        rgba(255, 255, 255, 0.2) 100%
+    ); /* Patrón de olas con transparencia */
+    background-repeat: repeat-x;
+    background-size: 50% 100%; /* Controla la repetición de las olas */
+    animation: waveEffect 4s linear infinite; /* Aplica la animación */
+    z-index: 2; /* Asegura que las olas estén sobre el fondo del río */
+    opacity: 0.8; /* Transparencia para un efecto más sutil */
+}
+
+@keyframes waveEffect {
+    0% { background-position-x: 0; }
+    100% { background-position-x: -100%; } /* Desplaza el fondo para crear el movimiento de ola */
+}
+
+
+.bank h3, .river h3 {
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.toys-on-bank {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Más espacio entre juguetes */
+    margin-top: 15px;
+}
+
+.toy-icon {
+    font-size: 1.5em; /* Íconos de juguetes más grandes */
+    background-color: #fff9c4; /* Fondo amarillo claro */
+    padding: 10px 15px;
+    border-radius: 25px; /* Más redondeado */
+    border: 1px solid #ffeb3b;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    white-space: nowrap;
+    font-weight: bold;
+    color: #424242;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 120px; /* Ancho fijo para hacerlos uniformes */
+    justify-content: center; /* Centrar contenido dentro del ancho fijo */
+}
+
+.toy-icon::before {
+    font-size: 1.2em;
+}
+
+.boat {
+    font-size: 4em;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%) scaleX(-1); /* Voltear horizontalmente */
+    color: #5d4037; /* Un color marrón para la balsa */
+    animation: float 3s ease-in-out infinite; /* Animación de flotación */
+}
+
+@keyframes float {
+    0% { transform: translate(-50%, -50%) scaleX(-1) rotate(0deg); } /* Asegurar que la rotación también se aplique al volteado */
+    50% { transform: translate(-50%, -55%) scaleX(-1) rotate(2deg); }
+    100% { transform: translate(-50%, -50%) scaleX(-1) rotate(0deg); }
+}
+
+.navigation-section {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px dashed #c0e0e0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation-section p {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    color: #555;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+}
+
+.input-section button {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.input-section button:hover {
+    background: linear-gradient(45deg, #2980b9, #3498db);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+.navigation-section .button {
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 1.2em;
+    background: linear-gradient(45deg, #4CAF50, #66BB6A); /* Degradado verde */
+    box-shadow: 0 5px 15px rgba(0, 150, 136, 0.2);
+}
+
+.navigation-section .button:hover {
+    background: linear-gradient(45deg, #66BB6A, #4CAF50);
+    box-shadow: 0 8px 20px rgba(0, 150, 136, 0.3);
+}
+
+.top-back-button-container {
+    text-align: right;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.top-back-button-container .button-back {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    background: #e0f2f7; /* Color de fondo igual al body */
+    color: #424242; /* Texto gris oscuro para un contraste sutil */
+    border: 1px solid #c0e0e0; /* Borde sutil */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Sombra muy sutil */
+}
+
+.top-back-button-container .button-back:hover {
+    background: #d5eaf0; /* Un poco más oscuro al pasar el mouse */
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* --- Estilo específico para la página de soluciones (soluciones.html) --- */
+.solutions-page {
+    align-items: flex-start; /* Alinea el contenido del body al inicio (arriba) */
+    padding-top: 30px; /* Añade un padding superior para que no esté pegado al borde */
+    padding-bottom: 30px; /* Añade un padding inferior */
+    /* min-height: 100vh; se mantiene para que el fondo cubra toda la altura */
+}
+
+
+/* Ajustes responsivos para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .container {
+        margin: 15px;
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2em;
+        margin-top: 40px;
+    }
+    .input-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .input-section input[type="number"] {
+        width: 100%;
+        max-width: 150px;
+    }
+    .scenario-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .bank, .river {
+        width: 90%;
+        margin: 0;
+        min-height: 120px;
+    }
+    .river {
+        min-height: 120px;
+    }
+    .toy-icon {
+        font-size: 1.2em;
+        padding: 8px 12px;
+        width: 100px;
+    }
+    .boat {
+        font-size: 3em;
+    }
+    .button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+    .top-back-button-container {
+        top: 10px;
+        right: 10px;
+    }
+}
