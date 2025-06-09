@@ -19,7 +19,7 @@ h1 {
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1500px;
     margin: 30px auto;
     background: linear-gradient(145deg, #ffffff, #f0f8ff);
     padding: 30px;
@@ -222,7 +222,7 @@ h1 {
     border: 2px solid #558b2f;
     border-radius: 15px;
     padding: 20px;
-    width: 30%;
+    width: 10%;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -237,8 +237,8 @@ h1 {
     background: linear-gradient(to bottom, #a7d9e2, #64b5f6);
     border: 1px solid #4fc3f7;
     padding: 10px;
-    border-radius: 15px;
-    width: 40%;
+    border-radius: 20px;
+    width: 70%;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -299,45 +299,45 @@ h1 {
 }
 
 .toy-icon {
-    font-size: 1.5em;
-    background-color: #fff9c4;
-    padding: 10px 15px;
+    width: 150px;
+    height: 220px; /* Aumentado para que entre bien el personaje */
+    background-color: #fff9c4; /* Color de fondo original */
+    background-image: url('Imagenes/buzz.jpg'); /* Asegúrate de que esta ruta sea correcta */
+    background-size: cover;
+    background-position: center;
     border-radius: 25px;
     border: 1px solid #ffeb3b;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    white-space: nowrap;
-    font-weight: bold;
-    color: #424242;
     display: flex;
     align-items: center;
-    gap: 5px;
-    width: 120px;
     justify-content: center;
-    cursor: pointer; /* Indicar que es clickeable */
-    transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, border 0.3s ease, box-shadow 0.3s ease, color 0.3s ease; /* Transición para todos los cambios */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    text-indent: -9999px; /* Oculta cualquier texto dentro */
 }
 
 .toy-icon.selected {
-    background-color: #c8e6c9; /* Verde claro suave, más agradable */
-    border-color: #4caf50; /* Borde verde para un contraste claro */
-    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); /* Sombra luminosa */
-    transform: translateY(-5px); /* Pequeño levantamiento */
+    background-color: #f0e68c; /* Color más oscuro al seleccionar */
+    border-color: #4caf50;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+    transform: translateY(-5px);
 }
 
 .toy-icon.gone {
-    background-color: transparent; /* Fondo transparente */
+    background-image: none;
+    background-color: transparent;
     cursor: not-allowed;
-    pointer-events: none; /* Deshabilita los eventos de clic */
-    opacity: 0; /* Hace el elemento completamente invisible */
-    border: none; /* Elimina el borde */
-    box-shadow: none; /* Elimina la sombra */
-    color: transparent; /* Hace el texto transparente */
-    transform: scale(0.95); /* Pequeña animación para indicar desactivación */
+    pointer-events: none;
+    opacity: 0;
+    border: none;
+    box-shadow: none;
+    transform: scale(0.95);
 }
-
 .boat {
-    font-size: 4em;
+    font-size: 15em;
     position: absolute;
+    width: 20%
     top: 50%;
     left: 20%;
     transform: translate(-50%, -50%) scaleX(-1);
