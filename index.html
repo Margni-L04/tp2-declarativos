@@ -12,7 +12,7 @@
 
         <div class="problem-description">
             <p>El malvado Emperador Zurg ha capturado a nuestros amigos juguetes: <b>Buzz</b>, <b>Woody</b>, <b>Rex</b> y <b>Hamm</b>. Para escapar, necesitan cruzar un río usando un barco, pero hay un problema: ¡El barco solo puede llevar a un máximo de dos juguetes a la vez y hay que usar nafta en cada viaje!</p>
-            <p>Todos juguete consume una cantidad específica de nafta por cada viaje en barco:</p>
+            <p>Cada juguete consume una cantidad específica de nafta por cada viaje en barco:</p>
             <ul>
                 <li><strong>Buzz</strong>: 1 litro</li>
                 <li><strong>Woody</strong>: 2 litros</li>
@@ -21,29 +21,35 @@
             </ul>
             <p>El objetivo es que todos los juguetes lleguen al otro lado del río. El barco necesita que al menos un juguete regrese al lado izquierdo para llevar a más amigos, consumiendo nafta en cada viaje de ida y vuelta.</p>
             <p>Cuando dos juguetes viajan juntos, la cantidad de nafta que usan es igual a la del mayor de los dos.</p>
+            <p>¡Haz clic en los juguetes para seleccionarlos y luego en "Confirmar Viaje" para mover la barca!</p>
         </div>
 
         <div class="scenario-container">
             <div class="bank left-bank">
-                <div class="toys-on-bank">
-                    <span class="toy-icon">Woody</span>
-                    <span class="toy-icon">Rex</span>
-                    <span class="toy-icon">Hamm</span>
-                    <span class="toy-icon">Buzz</span>
-                </div>
+                <div id="lado-izq" class="toys-on-bank"></div>
             </div>
             <div class="river">
                 <span class="boat">🚤</span>    
             </div>
             <div class="bank right-bank">
-                <div class="toys-on-bank"></div>
+                <div id="lado-der" class="toys-on-bank"></div></div>
+        </div>
+
+        <div class="control-section">
+            <div id="message-box" class="message-box">Selecciona hasta dos juguetes del lado izquierdo para iniciar el viaje.</div>
+            <div class="action-buttons">
+                <button id="confirm-travel-button" class="button button-action" disabled>Confirmar Viaje</button>
+                <button id="reset-button" class="button button-secondary">Reiniciar</button>
             </div>
         </div>
 
         <div class="navigation-section">
-            <p>¿Listo para encontrar las soluciones para el escape?</p>
+            <p>¿Listo para encontrar las soluciones óptimas del escape?</p>
             <a href="soluciones.html" class="button">Resolver el Escape</a>
         </div>
     </div>
+
+    <!-- Script para la lógica interactiva del escenario -->
+    <script type="module" src="./script-escenario.js"></script>
 </body>
 </html>

@@ -1,8 +1,6 @@
 import init, { MachineBuilder } from './scryer-pkg/scryer_prolog.js';
 
-main();
-
-async function main() {
+const main = async () => {
     // Inicializamos el modulo WebAssembly
     await init();
 
@@ -80,6 +78,8 @@ async function main() {
                 soluciones_html.appendChild(noSoluciones);
             } else {
                 let numSolucion = 1;
+
+                // Cramos los elementos para guardar cada solución
                 for (const solucion of soluciones_formateadas) {
                     const unaSolucion = document.createElement('div');
                     unaSolucion.classList.add("solution-item");
@@ -99,3 +99,6 @@ async function main() {
         }
     });
 }
+
+// Ejecutamos main
+main();

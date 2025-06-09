@@ -6,8 +6,8 @@ body {
     line-height: 1.6;
     display: flex;
     justify-content: center;
-    align-items: center; /* Este es el estilo por defecto que centra verticalmente */
-    min-height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+    align-items: center;
+    min-height: 100vh;
 }
 
 h1 {
@@ -19,15 +19,15 @@ h1 {
 }
 
 .container {
-    max-width: 900px; /* Un poco más ancho */
+    max-width: 900px;
     margin: 30px auto;
-    background: linear-gradient(145deg, #ffffff, #f0f8ff); /* Degradado suave */
+    background: linear-gradient(145deg, #ffffff, #f0f8ff);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     border: 1px solid #dcdcdc;
-    animation: fadeIn 1s ease-out; /* Animación de aparición */
-    position: relative; /* Necesario para posicionar el botón superior */
+    animation: fadeIn 1s ease-out;
+    position: relative;
 }
 
 @keyframes fadeIn {
@@ -39,7 +39,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px; /* Espacio más grande */
+    gap: 20px;
     margin-bottom: 30px;
     padding: 15px;
     background-color: #f9fdfd;
@@ -50,13 +50,13 @@ h1 {
 .input-section label {
     font-size: 1.2em;
     font-weight: bold;
-    color: #004d40; /* Verde azulado oscuro */
+    color: #004d40;
 }
 
 .input-section input[type="number"] {
-    padding: 12px; /* Más padding */
-    border: 1px solid #a7d9e2; /* Borde suave */
-    border-radius: 8px; /* Más redondeado */
+    padding: 12px;
+    border: 1px solid #a7d9e2;
+    border-radius: 8px;
     font-size: 1.1em;
     width: 120px;
     text-align: center;
@@ -71,11 +71,11 @@ h1 {
 }
 
 .input-section button {
-    background: linear-gradient(45deg, #3498db, #2980b9); /* Degradado en el botón */
+    background: linear-gradient(45deg, #3498db, #2980b9);
     color: white;
-    padding: 12px 25px; /* Más padding */
+    padding: 12px 25px;
     border: none;
-    border-radius: 8px; /* Más redondeado */
+    border-radius: 8px;
     cursor: pointer;
     font-size: 1.1em;
     font-weight: bold;
@@ -85,7 +85,7 @@ h1 {
 
 .input-section button:hover {
     background: linear-gradient(45deg, #2980b9, #3498db);
-    transform: translateY(-2px); /* Efecto de levitación */
+    transform: translateY(-2px);
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
@@ -101,23 +101,23 @@ h1 {
     padding: 20px;
     background-color: #fcfcfc;
     border-radius: 10px;
-    max-height: 450px; /* Un poco más de altura */
+    max-height: 450px;
     overflow-y: auto;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
 }
 
 .solution-item {
-    margin-bottom: 20px; /* Más espacio entre soluciones */
+    margin-bottom: 20px;
     padding: 15px;
-    border: 1px solid #b2dfdb; /* Borde más distintivo */
-    background-color: #e0f2f1; /* Fondo suave para cada solución */
+    border: 1px solid #b2dfdb;
+    background-color: #e0f2f1;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     transition: transform 0.2s ease;
 }
 
 .solution-item:hover {
-    transform: translateY(-3px); /* Pequeño efecto al pasar el mouse */
+    transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
@@ -138,14 +138,14 @@ h1 {
     white-space: pre-wrap;
     word-break: break-all;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1em; /* Tamaño de fuente ligeramente mayor */
+    font-size: 1em;
     margin: 0;
     color: #555;
 }
 
 .no-solutions {
     text-align: center;
-    color: #d32f2f; /* Rojo más oscuro */
+    color: #d32f2f;
     font-style: italic;
     padding: 20px;
     border: 1px solid #ef9a9a;
@@ -160,7 +160,7 @@ h1 {
     color: #00796b;
     margin-top: 20px;
     font-size: 1.1em;
-    animation: pulse 1.5s infinite ease-in-out; /* Animación de pulsación */
+    animation: pulse 1.5s infinite ease-in-out;
 }
 
 @keyframes pulse {
@@ -171,9 +171,9 @@ h1 {
 
 /* --- Estilos para la página principal (index.html) --- */
 .problem-description {
-    background-color: #e0f2f7; /* Un fondo suave para la descripción */
+    background-color: #e0f2f7;
     padding: 20px 25px;
-    border-left: 6px solid #26a69a; /* Borde verde azulado distintivo */
+    border-left: 6px solid #26a69a;
     margin-bottom: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -187,18 +187,17 @@ h1 {
 }
 
 .problem-description ul {
-    list-style: none; /* Quitamos el estilo de lista por defecto */
+    list-style: none;
     padding-left: 0;
 }
 
 .problem-description li {
     margin-bottom: 8px;
-    padding-left: 0; /* Ajustado a 0 porque ya no hay ícono al lado */
+    padding-left: 0;
     position: relative;
 }
 
 .problem-description li::before {
-    /* Se elimina la estrella */
     position: absolute;
     left: 0;
     top: 2px;
@@ -207,39 +206,39 @@ h1 {
 .scenario-container {
     display: flex;
     justify-content: space-around;
-    align-items: stretch; /* Hace que los elementos hijos se estiren para llenar la altura del contenedor */
+    align-items: stretch;
     background-color: #fdfdfd;
     padding: 25px;
     border-radius: 12px;
     box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.08);
     margin-bottom: 40px;
-    min-height: 250px; /* Asegura una altura mínima */
-    position: relative; /* Para posicionar la balsa más precisamente */
-    overflow: hidden; /* Para que la balsa no se salga si es muy grande */
+    min-height: 250px;
+    position: relative;
+    overflow: hidden;
 }
 
 .bank {
-    background: linear-gradient(to top, #7cb342, #aed581); /* Degradado verde para la tierra */
+    background: linear-gradient(to top, #7cb342, #aed581);
     border: 2px solid #558b2f;
     border-radius: 15px;
-    padding: 20px; /* Padding vertical para el contenido */
+    padding: 20px;
     width: 30%;
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Alinear contenido abajo */
+    justify-content: flex-end;
     align-items: center;
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     position: relative;
-    z-index: 1; /* Para que los bancos estén por encima del río en el borde */
+    z-index: 1;
 }
 
 .river {
-    background: linear-gradient(to bottom, #a7d9e2, #64b5f6); /* Degradado azul para el agua, un poco más claro */
-    border: 1px solid #4fc3f7; /* Borde más sutil */
-    padding: 10px; /* Menor padding vertical para que se vea "menos grueso" */
+    background: linear-gradient(to bottom, #a7d9e2, #64b5f6);
+    border: 1px solid #4fc3f7;
+    padding: 10px;
     border-radius: 15px;
-    width: 40%; /* El río es un poco más ancho */
+    width: 40%;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -247,18 +246,18 @@ h1 {
     align-items: center;
     position: relative;
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    margin: 0 15px; /* Espacio entre los bancos y el río */
-    z-index: 0; /* Para que el río esté por debajo de los bancos en el borde */
-    overflow: hidden; /* Asegura que la animación de las olas no se desborde */
+    margin: 0 15px;
+    z-index: 0;
+    overflow: hidden;
 }
 
-/* --- Efecto de olas para el río --- */
+/* Efecto de olas para el río */
 .river::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 200%; /* El doble de ancho para permitir el desplazamiento */
+    width: 200%;
     height: 100%;
     background-image: linear-gradient(to right,
         rgba(255, 255, 255, 0.2) 0%,
@@ -266,19 +265,18 @@ h1 {
         rgba(255, 255, 255, 0.2) 50%,
         rgba(255, 255, 255, 0.4) 75%,
         rgba(255, 255, 255, 0.2) 100%
-    ); /* Patrón de olas con transparencia */
+    );
     background-repeat: repeat-x;
-    background-size: 50% 100%; /* Controla la repetición de las olas */
-    animation: waveEffect 4s linear infinite; /* Aplica la animación */
-    z-index: 2; /* Asegura que las olas estén sobre el fondo del río */
-    opacity: 0.8; /* Transparencia para un efecto más sutil */
+    background-size: 50% 100%;
+    animation: waveEffect 4s linear infinite;
+    z-index: 2;
+    opacity: 0.8;
 }
 
 @keyframes waveEffect {
     0% { background-position-x: 0; }
-    100% { background-position-x: -100%; } /* Desplaza el fondo para crear el movimiento de ola */
+    100% { background-position-x: -100%; }
 }
-
 
 .bank h3, .river h3 {
     color: #ffffff;
@@ -292,15 +290,19 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px; /* Más espacio entre juguetes */
+    gap: 15px;
     margin-top: 15px;
+    min-height: 100px;
+    align-content: flex-end;
+    position: relative;
+    width: 100%;
 }
 
 .toy-icon {
-    font-size: 1.5em; /* Íconos de juguetes más grandes */
-    background-color: #fff9c4; /* Fondo amarillo claro */
+    font-size: 1.5em;
+    background-color: #fff9c4;
     padding: 10px 15px;
-    border-radius: 25px; /* Más redondeado */
+    border-radius: 25px;
     border: 1px solid #ffeb3b;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     white-space: nowrap;
@@ -309,12 +311,28 @@ h1 {
     display: flex;
     align-items: center;
     gap: 5px;
-    width: 120px; /* Ancho fijo para hacerlos uniformes */
-    justify-content: center; /* Centrar contenido dentro del ancho fijo */
+    width: 120px;
+    justify-content: center;
+    cursor: pointer; /* Indicar que es clickeable */
+    transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, border 0.3s ease, box-shadow 0.3s ease, color 0.3s ease; /* Transición para todos los cambios */
 }
 
-.toy-icon::before {
-    font-size: 1.2em;
+.toy-icon.selected {
+    background-color: #c8e6c9; /* Verde claro suave, más agradable */
+    border-color: #4caf50; /* Borde verde para un contraste claro */
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); /* Sombra luminosa */
+    transform: translateY(-5px); /* Pequeño levantamiento */
+}
+
+.toy-icon.gone {
+    background-color: transparent; /* Fondo transparente */
+    cursor: not-allowed;
+    pointer-events: none; /* Deshabilita los eventos de clic */
+    opacity: 0; /* Hace el elemento completamente invisible */
+    border: none; /* Elimina el borde */
+    box-shadow: none; /* Elimina la sombra */
+    color: transparent; /* Hace el texto transparente */
+    transform: scale(0.95); /* Pequeña animación para indicar desactivación */
 }
 
 .boat {
@@ -322,13 +340,15 @@ h1 {
     position: absolute;
     top: 50%;
     left: 20%;
-    transform: translate(-50%, -50%) scaleX(-1); /* Voltear horizontalmente */
-    color: #5d4037; /* Un color marrón para la balsa */
-    animation: float 3s ease-in-out infinite; /* Animación de flotación */
+    transform: translate(-50%, -50%) scaleX(-1);
+    color: #5d4037;
+    animation: float 3s ease-in-out infinite;
+    transition: all 1s ease-in-out;
+    z-index: 5;
 }
 
 @keyframes float {
-    0% { transform: translate(-50%, -50%) scaleX(-1) rotate(0deg); } /* Asegurar que la rotación también se aplique al volteado */
+    0% { transform: translate(-50%, -50%) scaleX(-1) rotate(0deg); }
     50% { transform: translate(-50%, -55%) scaleX(-1) rotate(2deg); }
     100% { transform: translate(-50%, -50%) scaleX(-1) rotate(0deg); }
 }
@@ -382,7 +402,7 @@ h1 {
     padding: 15px 30px;
     border-radius: 10px;
     font-size: 1.2em;
-    background: linear-gradient(45deg, #4CAF50, #66BB6A); /* Degradado verde */
+    background: linear-gradient(45deg, #4CAF50, #66BB6A);
     box-shadow: 0 5px 15px rgba(0, 150, 136, 0.2);
 }
 
@@ -403,24 +423,98 @@ h1 {
     padding: 8px 15px;
     font-size: 0.9em;
     border-radius: 5px;
-    background: #e0f2f7; /* Color de fondo igual al body */
-    color: #424242; /* Texto gris oscuro para un contraste sutil */
-    border: 1px solid #c0e0e0; /* Borde sutil */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Sombra muy sutil */
+    background: #e0f2f7;
+    color: #424242;
+    border: 1px solid #c0e0e0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .top-back-button-container .button-back:hover {
-    background: #d5eaf0; /* Un poco más oscuro al pasar el mouse */
+    background: #d5eaf0;
     transform: translateY(-1px);
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
-/* --- Estilo específico para la página de soluciones (soluciones.html) --- */
+/* Estilo específico para la página de soluciones (soluciones.html) */
 .solutions-page {
-    align-items: flex-start; /* Alinea el contenido del body al inicio (arriba) */
-    padding-top: 30px; /* Añade un padding superior para que no esté pegado al borde */
-    padding-bottom: 30px; /* Añade un padding inferior */
-    /* min-height: 100vh; se mantiene para que el fondo cubra toda la altura */
+    align-items: flex-start;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/* --- NUEVOS ESTILOS PARA LOS BOTONES DE ACCIÓN --- */
+.control-section {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.message-box {
+    background-color: #fff3e0;
+    border: 1px solid #ffcc80;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    color: #e65100;
+    font-weight: bold;
+    text-align: center;
+}
+
+.message-box.success {
+    background-color: #e8f5e9;
+    border-color: #4caf50;
+    color: #2e7d32;
+}
+
+.message-box.error {
+    background-color: #ffebee;
+    border-color: #ef9a9a;
+    color: #d32f2f;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.button-action {
+    background: linear-gradient(45deg, #1e88e5, #42a5f5); /* Azul para acción principal */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1.1em;
+}
+
+.button-action:hover:not(:disabled) {
+    background: linear-gradient(45deg, #42a5f5, #1e88e5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+.button-secondary {
+    background: linear-gradient(45deg, #9e9e9e, #bdbdbd); /* Gris para acción secundaria */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1.1em;
+}
+
+.button-secondary:hover:not(:disabled) {
+    background: linear-gradient(45deg, #bdbdbd, #9e9e9e);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.12);
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 
@@ -453,6 +547,9 @@ h1 {
     }
     .river {
         min-height: 120px;
+    }
+    .toys-on-bank {
+        min-height: 80px;
     }
     .toy-icon {
         font-size: 1.2em;
