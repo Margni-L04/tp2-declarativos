@@ -187,7 +187,7 @@ const inicializar = () => {
             cadaJuguete.classList.add('gone');
         }
 
-        // Movemos el barco al lado izquierdo si está del lado derecho
+        // Movemos el barco al lado izquierdo si es necesario
         if(!estamosIzq) {
             bote.classList.remove('right');
         }
