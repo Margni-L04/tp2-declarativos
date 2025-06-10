@@ -123,7 +123,7 @@ const inicializar = () => {
                     }
 
                 } else {
-                    cajaMensaje.innerHTML = 'No hay suficiente nafta para el viaje, seleccione otros juguetes del lado izquierdo';
+                    cajaMensaje.innerHTML = 'No hay suficiente combustible para el viaje, seleccione otros juguetes del lado izquierdo';
                 }
             } else {
                 cajaMensaje.innerHTML = 'Se deben seleccionar dos juguetes del lado izquierdo para iniciar el viaje';
@@ -162,7 +162,7 @@ const inicializar = () => {
                     naftaUsada += naftaViaje;
 
                 } else {
-                    cajaMensaje.innerHTML = 'No hay suficiente nafta para el viaje, seleccione otro juguete del lado derecho';
+                    cajaMensaje.innerHTML = 'No hay suficiente combustible para el viaje, seleccione otro juguete del lado derecho';
                 }
             } else {
                 cajaMensaje.innerHTML = 'Se debe seleccionar un juguete del lado derecho para iniciar el viaje';
