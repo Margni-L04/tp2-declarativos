@@ -5,12 +5,16 @@ const juguetes = [
     { nombre: 'Hamm', nafta: 5, urlImagen: 'Imagenes/hamm.jpg' }
 ];
 
+const totalNafta = 12;
+let naftaUsada = 0;
+
 const inicializar = () => {
     const ladoIzq = document.getElementById('lado-izq');
     const ladoDer = document.getElementById('lado-der');
     const bote = document.getElementById('bote');
     const botonConfirmar = document.getElementById('boton-confirmar');
     const botonResetear = document.getElementById('boton-resetear');
+    const cajaNafta = document.getElementById('caja-nafta');
     const cajaMensaje = document.getElementById('caja-mensaje');
 
     let estamosIzq = true;
@@ -48,24 +52,53 @@ const inicializar = () => {
         ladoDer.appendChild(spanJugueteDer);
     }
 
+    for (let i = 0; i < totalNafta; i++) {
+        const nafta = document.createElement('div');
+        nafta.classList.add('fuel-cell');
+        cajaNafta.appendChild(nafta);
+
+        const imagenNafta = document.createElement('img');
+        imagenNafta.src = 'Imagenes/nafta.png';
+        imagenNafta.alt = 'Litro de nafta';
+        nafta.appendChild(imagenNafta);     
+    }
+
+    const naftas = cajaNafta.querySelectorAll('.fuel-cell');
+
     botonConfirmar.addEventListener('click', () => {
         if (estamosIzq) {
             const juguetes_seleccionados = ladoIzq.querySelectorAll('.toy-icon.selected');
 
             if (juguetes_seleccionados.length === 2) {
-                for (const cadaJuguete of juguetes_seleccionados) {
-                    const idComplemento = (cadaJuguete.id).replace('-I', '-D');
-                    const jugueteComplemento = document.getElementById(idComplemento);
+                const nombreJuguete1 = juguetes_seleccionados[0].textContent;
+                const nombreJuguete2 = juguetes_seleccionados[1].textContent;
+                const nafta1 = (juguetes.find(j => j.nombre === nombreJuguete1)).nafta;
+                const nafta2 = (juguetes.find(j => j.nombre === nombreJuguete2)).nafta;
+                const naftaViaje = Math.max(nafta1, nafta2);
 
-                    cadaJuguete.classList.remove('selected');
-                    cadaJuguete.classList.add('gone');
+                if(naftaUsada + naftaViaje <= totalNafta) {
 
-                    jugueteComplemento.classList.remove('gone');
+                    for (const cadaJuguete of juguetes_seleccionados) {
+                        const idComplemento = (cadaJuguete.id).replace('-I', '-D');
+                        const jugueteComplemento = document.getElementById(idComplemento);
+    
+                        cadaJuguete.classList.remove('selected');
+                        cadaJuguete.classList.add('gone');
+    
+                        jugueteComplemento.classList.remove('gone');
+                    }
+    
+                    cajaMensaje.innerHTML = 'Seleccione un juguete del lado derecho para iniciar el viaje';
+                    bote.classList.add('right');
+                    estamosIzq = false;
+
+                    for (let i = naftaUsada; i < naftaUsada + naftaViaje; i++) {
+                        naftas[i].classList.add('used');
+                    }
+                    naftaUsada += naftaViaje;
+                } else {
+                    cajaMensaje.innerHTML = 'No hay suficiente nafta para el viaje, seleccione otros juguetes del lado izquierdo';
                 }
-
-                cajaMensaje.innerHTML = 'Seleccione un juguete del lado derecho para iniciar el viaje';
-                bote.classList.add('right');
-                estamosIzq = false;
             } else {
                 cajaMensaje.innerHTML = 'Se deben seleccionar dos juguetes del lado izquierdo para iniciar el viaje';
             }
@@ -73,21 +106,33 @@ const inicializar = () => {
             const juguetes_seleccionados = ladoDer.querySelectorAll('.toy-icon.selected');
 
             if (juguetes_seleccionados.length === 1) {
-                for (const cadaJuguete of juguetes_seleccionados) {
-                    const idComplemento = (cadaJuguete.id).replace('-D', '-I');
-                    const jugueteComplemento = document.getElementById(idComplemento);
+                const nombreJuguete = juguetes_seleccionados[0].textContent;
+                const naftaViaje = (juguetes.find(j => j.nombre === nombreJuguete)).nafta;
 
-                    cadaJuguete.classList.remove('selected');
-                    cadaJuguete.classList.add('gone');
+                if(naftaUsada + naftaViaje <= totalNafta) {
+                    for (const cadaJuguete of juguetes_seleccionados) {
+                        const idComplemento = (cadaJuguete.id).replace('-D', '-I');
+                        const jugueteComplemento = document.getElementById(idComplemento);
+    
+                        cadaJuguete.classList.remove('selected');
+                        cadaJuguete.classList.add('gone');
+    
+                        jugueteComplemento.classList.remove('gone');
+                    }
+    
+                    cajaMensaje.innerHTML = 'Seleccione dos juguetes del lado izquierdo para iniciar el viaje';
+                    bote.classList.remove('right');
+                    estamosIzq = true;
 
-                    jugueteComplemento.classList.remove('gone');
+                    for (let i = naftaUsada; i < naftaUsada + naftaViaje; i++) {
+                        naftas[i].classList.add('used');
+                    }
+                    naftaUsada += naftaViaje;
+                } else {
+                    cajaMensaje.innerHTML = 'No hay suficiente nafta para el viaje, seleccione otro juguete del lado derecho';
                 }
-
-                cajaMensaje.innerHTML = 'Seleccione dos juguetes del lado izquierdo para iniciar el viaje';
-                bote.classList.remove('right');
-                estamosIzq = true;
             } else {
-                cajaMensaje.innerHTML = 'Se debe seleccionar un juguetes del lado derecho para iniciar el viaje';
+                cajaMensaje.innerHTML = 'Se debe seleccionar un juguete del lado derecho para iniciar el viaje';
             }
         }
     });
@@ -108,6 +153,12 @@ const inicializar = () => {
 
         cajaMensaje.innerHTML = 'Seleccione dos juguetes del lado izquierdo para iniciar el viaje';
         estamosIzq = true;
+
+        for (let i = 0; i < naftaUsada; i++) {
+            naftas[i].classList.remove('used');
+        }
+
+        naftaUsada = 0;
     });
 }
 
