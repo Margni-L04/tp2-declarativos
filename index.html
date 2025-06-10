@@ -12,8 +12,8 @@
         <div class="problem-description">
             <p>El malvado Emperador Zurg ha capturado a nuestros amigos juguetes: <b>Buzz</b>, <b>Woody</b>, <b>Rex</b>
                 y <b>Hamm</b>. Para escapar, necesitan cruzar un río usando un barco, pero hay un problema: ¡El barco
-                solo puede llevar a un máximo de dos juguetes a la vez y hay que usar nafta en cada viaje!</p>
-            <p>Cada juguete consume una cantidad específica de nafta por cada viaje en barco:</p>
+                solo puede llevar a un máximo de dos juguetes a la vez y hay que usar combustible en cada viaje!</p>
+            <p>Cada juguete consume una cantidad específica de combustible por cada viaje en barco:</p>
             <ul>
                 <li><strong>Buzz</strong>: 1 litro</li>
                 <li><strong>Woody</strong>: 2 litros</li>
@@ -21,9 +21,9 @@
                 <li><strong>Hamm</strong>: 5 litros</li>
             </ul>
             <p>El objetivo es que todos los juguetes lleguen al otro lado del río. El barco necesita que al menos un
-                juguete regrese al lado izquierdo para llevar a más amigos, consumiendo nafta en cada viaje de ida y
+                juguete regrese al lado izquierdo para llevar a más amigos, consumiendo combustible en cada viaje de ida y
                 vuelta.</p>
-            <p>Cuando dos juguetes viajan juntos, la cantidad de nafta que usan es igual a la del mayor de los dos.</p>
+            <p>Cuando dos juguetes viajan juntos, la cantidad de combustible que usan es igual a la del mayor de los dos.</p>
             <p>¡Haz clic en los juguetes para seleccionarlos y luego en "Confirmar Viaje" para mover la barca!</p>
         </div>
 
@@ -32,6 +32,8 @@
                 <div id="lado-izq" class="toys-on-bank"></div>
             </div>
             <div class="river">
+                <div class="barra"><span></span></div>
+                <div id="contador-nafta" class="contador-nafta"></div>
                 <span id="bote" class="boat">🚤</span>
             </div>
             <div class="bank right-bank">

@@ -287,6 +287,48 @@ h1 {
     opacity: 0.8;
 }
 
+.barra {
+    width: 90%;
+    flex-grow: 1;
+    height: 14px;
+    background-color: #e0e0e0;
+    border-radius: 7px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.barra span {
+    display: block;
+    height: 100%;
+    background-color: #f4b400; 
+    transition: width 0.3s ease-in-out;
+    border-radius: 7px 0 0 7px;
+    width: 100%;
+}
+
+.contador-nafta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -900px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #00796b;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.contador-nafta img {
+    width: 30px;
+    height: 30px;
+}
+
 @keyframes waveEffect {
     0% {
         background-position-x: 0;
@@ -640,6 +682,8 @@ h1 {
     /* Estilo más limpio para el contenedor de los cuadraditos */
     background-color: transparent;
     border-radius: 10px;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .fuel-cell {
