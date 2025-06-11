@@ -78,8 +78,8 @@ const inicializar = () => {
                         spanIzq.classList.add('selected');
                         ordenJuguetesSeleccionados.push(spanIzq);
                     } else {
-                        // Eliminamos el elemento más viejo
-                        const jugueteMasViejo = ordenJuguetesSeleccionados.shift(); // Quita el primer elemento (el más viejo)
+                        // Quita el primer elemento (el más viejo)
+                        const jugueteMasViejo = ordenJuguetesSeleccionados.shift(); 
                         jugueteMasViejo.classList.remove('selected');
 
                         // Añadimos el nuevo juguete como seleccionado

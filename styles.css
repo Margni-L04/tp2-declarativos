@@ -19,28 +19,8 @@ h1 {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.container {
-    max-width: 80%;
-    margin: 30px auto;
-    background: linear-gradient(145deg, #ffffff, #f0f8ff);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    border: 1px solid #dcdcdc;
-    animation: fadeIn 1s ease-out;
-    position: relative;
-}
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/*Estilos para la página de soluciones (soluciones.html)*/
 
 .input-section {
     display: flex;
@@ -182,7 +162,7 @@ h1 {
     }
 }
 
-/* --- Estilos para la página principal (index.html) --- */
+/*Estilos para la página principal (index.html)*/
 
 .problem-description {
     background-color: #e0f2f7;
@@ -218,6 +198,32 @@ h1 {
     top: 2px;
 }
 
+/*Estilo contenedor general*/
+.container {
+    max-width: 80%;
+    margin: 30px auto;
+    background: linear-gradient(145deg, #ffffff, #f0f8ff);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid #dcdcdc;
+    animation: fadeIn 1s ease-out;
+    position: relative;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/*Estilo del contenedor del juego*/
 .scenario-container {
     display: flex;
     justify-content: space-around;
@@ -246,6 +252,17 @@ h1 {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     position: relative;
     z-index: 1;
+}
+.bank h3,
+
+/* Estilo del río */
+
+.river h3 {
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .river {
@@ -286,7 +303,16 @@ h1 {
     z-index: 2;
     opacity: 0.8;
 }
+@keyframes waveEffect {
+    0% {
+        background-position-x: 0;
+    }
+    100% {
+        background-position-x: -100%;
+    }
+}
 
+/*Estilo de la barra de progreso, junto con el contador de nafta*/
 .barra {
     width: 90%;
     flex-grow: 1;
@@ -329,23 +355,7 @@ h1 {
     height: 30px;
 }
 
-@keyframes waveEffect {
-    0% {
-        background-position-x: 0;
-    }
-    100% {
-        background-position-x: -100%;
-    }
-}
-
-.bank h3,
-.river h3 {
-    color: #ffffff;
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.5em;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
+/*Estilo iconos de juguete*/
 
 .toys-on-bank {
     display: flex;
@@ -396,6 +406,8 @@ h1 {
     transform: scale(0.95);
 }
 
+/*Estilo del bote*/
+
 .boat {
     font-size: 10em;
     position: absolute;
@@ -438,6 +450,7 @@ h1 {
     }
 }
 
+/*Estilo seccion debajo del juego*/
 .navigation-section {
     text-align: center;
     margin-top: 40px;
@@ -601,7 +614,7 @@ h1 {
     box-shadow: none;
 }
 
-/* Ajustes responsivos para pantallas más pequeñas */
+/*Ajustes para pantallas más chicas*/
 @media (max-width: 768px) {
     .container {
         margin: 15px;
@@ -653,132 +666,49 @@ h1 {
     }
 }
 
-/* --- Estilos para la sección de Nafta --- */
-.fuel-section {
-    text-align: center;
-    margin-bottom: 30px;
-    padding: 20px;
-    /* Estilo más limpio para el contenedor de la sección */
-    background-color: #f0f8ff; /* Un azul muy claro */
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra más sutil */
-    border: 1px solid #cceeff; /* Borde suave */
-}
-
-.fuel-section h2 {
-    color: #005662; /* Un tono de azul-verde más profundo */
-    margin-bottom: 25px;
-    font-size: 1.8em; /* Título un poco más grande */
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.fuel-indicator-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px; /* Aumento el espacio entre los cuadraditos */
-    padding: 15px; /* Aumento el padding interno */
-    /* Estilo más limpio para el contenedor de los cuadraditos */
-    background-color: transparent;
-    border-radius: 10px;
-    width: 80%;
-    margin: 0 auto;
-}
-
-.fuel-cell {
-    width: 50px; /* Tamaño del cuadradito AUMENTADO */
-    height: 50px; /* Tamaño del cuadradito AUMENTADO */
-    border: 2px solid #a7d9e2; /* Borde del cuadradito (un azul claro) */
-    border-radius: 8px; /* Bordes un poco más redondeados */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f7fcfd; /* Fondo muy claro para cada celda */
-    transition: all 0.4s ease; /* Transición más suave para todos los cambios */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Pequeña sombra para dar profundidad */
-}
-
-.fuel-cell img {
-    width: 90%; /* La imagen ocupa casi todo el espacio */
-    height: 90%; /* La imagen ocupa casi todo el espacio */
-    object-fit: contain;
-    filter: grayscale(0%); /* Imagen a color por defecto */
-    opacity: 1; /* Opacidad normal por defecto */
-    transition: filter 0.4s ease, opacity 0.4s ease; /* Transición más suave para la imagen */
-}
-
-/* Clase para indicar que la nafta ha sido "consumida" */
-.fuel-cell.used img {
-    filter: grayscale(100%); /* Pone la imagen en blanco y negro */
-    opacity: 0.4; /* La hace más transparente, indicando consumo */
-}
-
-/* Ajustes responsivos para pantallas más pequeñas para la sección de nafta */
-@media (max-width: 768px) {
-    .fuel-section {
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-    .fuel-section h2 {
-        font-size: 1.5em;
-        margin-bottom: 15px;
-    }
-    .fuel-indicator-container {
-        gap: 8px;
-        padding: 10px;
-    }
-    .fuel-cell {
-        width: 45px; /* Ligeramente más pequeños en móviles */
-        height: 45px; /* Ligeramente más pequeños en móviles */
-        border-radius: 6px;
-    }
-}
-
-/* --- Estilos para el mensaje de victoria --- */
+/*Estilo mensaje de victoria*/
 .mensaje-victoria-overlay {
-    position: fixed; /* Fija el elemento en la ventana del navegador */
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
-    display: flex; /* Para centrar el contenido */
-    justify-content: center; /* Centrado horizontal */
-    align-items: center; /* Centrado vertical */
-    z-index: 1000; /* Asegura que esté por encima de todo */
-    opacity: 0; /* Inicialmente invisible */
-    visibility: hidden; /* Inicialmente oculto */
-    transition: opacity 0.5s ease, visibility 0.5s ease; /* Transición suave */
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    z-index: 1000; 
+    opacity: 0; 
+    visibility: hidden; 
+    transition: opacity 0.5s ease, visibility 0.5s ease; 
 }
 
 .mensaje-victoria-overlay.mostrar {
-    opacity: 1; /* Hace que se vea */
-    visibility: visible; /* Hace que sea visible */
+    opacity: 1; 
+    visibility: visible; 
 }
 
 .mensaje-victoria-contenido {
-    background: linear-gradient(135deg, #e8f5e9, #c8e6c9); /* Degradado suave */
-    color: #2e7d32; /* Texto verde oscuro */
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9); 
+    color: #2e7d32; 
     padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
     text-align: center;
     max-width: 500px;
-    transform: scale(0.8); /* Inicia un poco más pequeño */
-    transition: transform 0.5s ease; /* Transición para el tamaño */
-    border: 3px solid #4caf50; /* Borde sólido */
+    transform: scale(0.8); 
+    transition: transform 0.5s ease;
+    border: 3px solid #4caf50; 
 }
 
 .mensaje-victoria-overlay.mostrar .mensaje-victoria-contenido {
-    transform: scale(1); /* Vuelve al tamaño normal cuando se muestra */
+    transform: scale(1); 
 }
 
 .mensaje-victoria-contenido h2 {
     font-size: 3em;
     margin-bottom: 15px;
-    color: #1b5e20; /* Tono de verde más oscuro para el título */
+    color: #1b5e20; 
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -789,7 +719,7 @@ h1 {
 }
 
 .mensaje-victoria-contenido .button {
-    background: linear-gradient(45deg, #4CAF50, #66BB6A); /* Botón verde */
+    background: linear-gradient(45deg, #4CAF50, #66BB6A); 
     padding: 15px 30px;
     font-size: 1.2em;
     border-radius: 8px;
@@ -802,11 +732,10 @@ h1 {
     box-shadow: 0 4px 10px rgba(0, 150, 136, 0.3);
 }
 
-/* Ajustes responsivos para el mensaje de victoria */
 @media (max-width: 768px) {
     .mensaje-victoria-contenido {
         padding: 25px;
-        margin: 0 20px; /* Margen a los lados en móviles */
+        margin: 0 20px; /
     }
     .mensaje-victoria-contenido h2 {
         font-size: 2.2em;
