@@ -36,13 +36,13 @@ const inicializar = () => {
     const botonConfirmar = document.getElementById('boton-confirmar');
     const botonResetear = document.getElementById('boton-resetear');
     const botonVolverJugar = document.getElementById('boton-volver-jugar');
-    const cajaNafta = document.getElementById('caja-nafta');
     const cajaMensaje = document.getElementById('caja-mensaje');
     const mensajeVictoria = document.getElementById('mensaje-victoria');
 
     // Informacion general
     let estamosIzq = true;
     let num = 0;
+    let ordenJuguetesSeleccionados = [];
 
      // Carga de juguetes en ambos lados (solo visibles del lado izquierdo)
     for (const juguete of juguetes) {
@@ -61,21 +61,54 @@ const inicializar = () => {
         spanDer.style.backgroundImage = `url('${juguete.urlImagen}')`;
 
         num++;
-
-        // Agregamos la funcionalidad al hacer click en los juguetes cuando están activos del lado que corresponda// Agregamos la funcionalidad al hacer click en los juguetes cuando están activos del lado que corresponda
+        
+        // Agregamos la funcionalidad al hacer click en los juguetes cuando están activos del lado que corresponda
         spanIzq.addEventListener('click', () => {
-            if (estamosIzq) spanIzq.classList.toggle('selected');
+            if (estamosIzq) {
+                // Si estamos del lado izquierdo solo podemos tener dos juguetes seleccionados, si selecciona otro se cambia por el primero
+                const estaSeleccionado = spanIzq.classList.contains('selected');
+                
+                if(estaSeleccionado) {
+                    spanIzq.classList.remove('selected');
+                    ordenJuguetesSeleccionados = ordenJuguetesSeleccionados.filter(j => j !== spanIzq);
+                } else {
+
+                    if (ordenJuguetesSeleccionados.length < 2) {
+                        // Si hay menos de 2 seleccionados, simplemente lo agregamos a la lista
+                        spanIzq.classList.add('selected');
+                        ordenJuguetesSeleccionados.push(spanIzq);
+                    } else {
+                        // Eliminamos el elemento más viejo
+                        const jugueteMasViejo = ordenJuguetesSeleccionados.shift(); // Quita el primer elemento (el más viejo)
+                        jugueteMasViejo.classList.remove('selected');
+
+                        // Añadimos el nuevo juguete como seleccionado
+                        spanIzq.classList.add('selected');
+                        ordenJuguetesSeleccionados.push(spanIzq);
+                    }
+                }
+            }
         });
 
         spanDer.addEventListener('click', () => {
-            if (!estamosIzq) spanDer.classList.toggle('selected');
+            if (!estamosIzq) {
+                // Si estamos del lado derecho solo puede haber uno seleccionado, sacamos al seleccionado que está por el nuevo
+                const jugueteSeleccionado = ladoDer.querySelector('.selected');
+
+                if(jugueteSeleccionado && jugueteSeleccionado.textContent !== spanDer.textContent) {
+                    // Hay un juguete seleccionado, y no es el mismo al que le hicieron click
+                    jugueteSeleccionado.classList.remove('selected');
+                }
+
+                spanDer.classList.toggle('selected');
+            }
         });
 
         // Agregamos los juguetes al html
         ladoIzq.appendChild(spanIzq);
         ladoDer.appendChild(spanDer);
     }
-
+    
     //Creamos la barra para indicar la nafta disponible
     barraInterna = document.querySelector('.barra span');
     barraInterna.style.width = '100%';
@@ -134,20 +167,24 @@ const inicializar = () => {
         }
     });
 
+    // Funcionalidad de los botones de "Resetear" y "Volver a Jugar"
     const resetear = () => {
         const izq = ladoIzq.querySelectorAll('.toy-icon');
         const der = ladoDer.querySelectorAll('.toy-icon');
 
-        izq.forEach(j => {
-            j.classList.remove('selected', 'gone');
+        izq.forEach(juguete => {
+            juguete.classList.remove('selected', 'gone');
         });
 
-        der.forEach(j => {
-            j.classList.remove('selected');
-            j.classList.add('gone');
+        der.forEach(juguete => {
+            juguete.classList.remove('selected');
+            juguete.classList.add('gone');
         });
 
-        if (!estamosIzq) bote.classList.remove('right');
+        if (!estamosIzq) {
+            bote.classList.remove('right');
+        }
+
         estamosIzq = true;
         naftaUsada = 0;
         actualizarBarraProgreso();

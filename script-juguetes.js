@@ -10,7 +10,7 @@ const main = async () => {
     const soluciones_html = document.getElementById('escape-solution');
 
     // Carga inicial del archivo .pl
-    const juguetesPl = await fetch('juguetes.pl').then(r => r.text());
+    const juguetesPl = await fetch('../juguetes.pl').then(r => r.text());
 
     // Ejecutar la solución del problema
     boton_ejecutar.addEventListener('click', async () => {
