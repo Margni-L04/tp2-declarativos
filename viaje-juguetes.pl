@@ -1,5 +1,5 @@
 % Imports
-:- use_module(library(clpfd)).
+:- use_module(library(clpz)).
 
 % Almacenamos la nafta que consume cada juguete en su viaje
 nafta(buzz, 1).
@@ -8,7 +8,7 @@ nafta(rex, 4).
 nafta(hamm, 5).
 
 % Predicado que representa la ida de un viaje, donde dos juguetes van hacia el lado derecho
-viaje_ida(Juguete1, Juguete2, NaftaDisponible) :- 
+viaje_ida(Juguete1, Juguete2, NaftaDisponible, NaftaRestante) :- 
     % Obtenemos cuanta nafta gasta cada uno
     nafta(Juguete1, Nafta1),
     nafta(Juguete2, Nafta2),
@@ -21,7 +21,7 @@ viaje_ida(Juguete1, Juguete2, NaftaDisponible) :-
     !.
     
 % Predicado que representa la vuelta de un viaje, donde un juguete van hacia el lado izquierdo
-viaje_vuelta(Juguete, NaftaDisponible) :-
+viaje_vuelta(Juguete, NaftaDisponible, NaftaRestante) :-
     % Obtenemos cuanta nafta gasta
     nafta(Juguete, Nafta),
 

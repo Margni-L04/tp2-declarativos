@@ -1,34 +1,38 @@
+import init, { MachineBuilder } from './scryer-pkg/scryer_prolog.js';
+
 // Arreglo con información de los juguetes
 const juguetes = [
-    { nombre: 'Buzz', nafta: 1, urlImagen: 'Imagenes/buzz.jpg' },
-    { nombre: 'Woody', nafta: 2, urlImagen: 'Imagenes/woody.png' },
-    { nombre: 'Rex', nafta: 4, urlImagen: 'Imagenes/rex.jpg' },
-    { nombre: 'Hamm', nafta: 5, urlImagen: 'Imagenes/hamm.jpg' }
+    { nombre: 'buzz', urlImagen: 'Imagenes/buzz.jpg' },
+    { nombre: 'woody', urlImagen: 'Imagenes/woody.png' },
+    { nombre: 'rex', urlImagen: 'Imagenes/rex.jpg' },
+    { nombre: 'hamm', urlImagen: 'Imagenes/hamm.jpg' }
 ];
 
 // Información sobre la nafta
 const totalNafta = 12;
-let naftaUsada = 0;
+let naftaRestante = totalNafta;
 
 // Variables de barra de progreso
 let barraInterna;
 let contadorNafta;
 
 const actualizarContadorNafta = () => {
-    const naftaRestante = totalNafta - naftaUsada;
     contadorNafta.innerHTML = `
         <img src="https://iili.io/FKGJK4s.png" alt="Nafta">
         ${naftaRestante} / ${totalNafta}
     `;
-};
+}
 
 const actualizarBarraProgreso = () => {
-    const porcentajeRestante = ((totalNafta - naftaUsada) / totalNafta) * 100;
+    const porcentajeRestante = ((naftaRestante) / totalNafta) * 100;
     barraInterna.style.width = `${porcentajeRestante}%`;
     actualizarContadorNafta();
-};
+}
 
-const inicializar = () => {
+const inicializar = async () => {
+    // Inicializamos el modulo WebAssembly
+    await init();
+
      // Componentes del html para modificar
     const ladoIzq = document.getElementById('lado-izq');
     const ladoDer = document.getElementById('lado-der');
@@ -38,6 +42,9 @@ const inicializar = () => {
     const botonVolverJugar = document.getElementById('boton-volver-jugar');
     const cajaMensaje = document.getElementById('caja-mensaje');
     const mensajeVictoria = document.getElementById('mensaje-victoria');
+
+    // Carga inicial del archivo .pl
+    const viajeJuguetesPl = await fetch('viaje-juguetes.pl').then(r => r.text());
 
     // Informacion general
     let estamosIzq = true;
@@ -116,41 +123,64 @@ const inicializar = () => {
     actualizarContadorNafta();
 
     const realizarViaje = (nombresJuguetes) => {
-        const naftaViaje = Math.max(...nombresJuguetes.map(nombre => juguetes.find(j => j.nombre === nombre).nafta));
+        // Creamos los elementos para poder ejecutar prolog
+        const builder = new MachineBuilder();
+        const machine = builder.build();
 
-        if (naftaUsada + naftaViaje <= totalNafta) {
-            for (const nombre of nombresJuguetes) {
-                const origen = estamosIzq ? ladoIzq : ladoDer;
-                const destino = estamosIzq ? ladoDer : ladoIzq;
+        // Consultamos al modulo prolog
+        machine.consultModuleString('user', viajeJuguetesPl);
 
-                // Buscar juguete en el lado correspondiente por nombre
-                const jugueteOrigen = Array.from(origen.querySelectorAll('.toy-icon')).find(el => el.textContent === nombre);
-                const idComplemento = estamosIzq ? jugueteOrigen.id.replace('-I', '-D') : jugueteOrigen.id.replace('-D', '-I');
-                const jugueteDestino = document.getElementById(idComplemento);
-
-                jugueteOrigen.classList.remove('selected');
-                jugueteOrigen.classList.add('gone');
-                jugueteDestino.classList.remove('gone');
-            }
-
-            estamosIzq = !estamosIzq;
-            bote.classList.toggle('right');
-            naftaUsada += naftaViaje;
-            actualizarBarraProgreso();
-
-            const mensaje = estamosIzq
-                ? 'Seleccione dos juguetes del lado izquierdo para iniciar el viaje'
-                : 'Seleccione un juguete del lado derecho para iniciar el viaje';
-            cajaMensaje.innerHTML = mensaje;
-
-            const escondidosIzq = ladoIzq.querySelectorAll('.toy-icon.gone').length;
-            if (escondidosIzq === juguetes.length) {
-                mensajeVictoria.classList.add('mostrar');
-            }
+        // Ejecutamos la consulta para ver si es una solucion valida
+        let query;
+        if(estamosIzq) {
+            query = `viaje_ida(${nombresJuguetes[0]}, ${nombresJuguetes[1]}, ${naftaRestante}, NaftaRestante).`;
         } else {
-            cajaMensaje.innerHTML = 'No hay suficiente combustible para el viaje, seleccione otros juguetes';
+            query = `viaje_vuelta(${nombresJuguetes[0]}, ${naftaRestante}, NaftaRestante).`;
         }
-    };
+        console.log('Ejecutando consulta: ', query);
+        const answers = machine.runQuery(query);
+
+        for(const solucion of answers) {
+            // Esta solución va a ser unica, pero necesitamos iterar por ese unico elemento
+            if(solucion !== false) {
+                for (const nombre of nombresJuguetes) {
+                    const origen = estamosIzq ? ladoIzq : ladoDer;
+
+                    // Buscar juguete en el lado correspondiente por nombre
+                    const jugueteOrigen = Array.from(origen.querySelectorAll('.toy-icon')).find(el => el.textContent === nombre);
+                    const idComplemento = estamosIzq ? jugueteOrigen.id.replace('-I', '-D') : jugueteOrigen.id.replace('-D', '-I');
+                    const jugueteDestino = document.getElementById(idComplemento);
+
+                    jugueteOrigen.classList.remove('selected');
+                    jugueteOrigen.classList.add('gone');
+                    jugueteDestino.classList.remove('gone');
+                }
+
+                const naftaViaje = parseInt(solucion.bindings['NaftaRestante'].integer);
+
+                // Actualizamos estado del programa
+                estamosIzq = !estamosIzq;
+                bote.classList.toggle('right');
+                naftaRestante -= (totalNafta - naftaViaje);
+                actualizarBarraProgreso();
+
+                const mensaje = estamosIzq
+                    ? 'Seleccione dos juguetes del lado izquierdo para iniciar el viaje'
+                    : 'Seleccione un juguete del lado derecho para iniciar el viaje';
+                cajaMensaje.innerHTML = mensaje;
+
+                // Verificamos si todos los juguetes estan del lado izquierdo, lo que significa que ganamos
+                const escondidosIzq = ladoIzq.querySelectorAll('.toy-icon.gone').length;
+                if (escondidosIzq === juguetes.length) {
+                    mensajeVictoria.classList.add('mostrar');
+                }
+            } else {
+                cajaMensaje.innerHTML = estamosIzq
+                    ? 'No hay suficiente combustible para el viaje, seleccione otros juguetes'
+                    : 'No hay suficiente combustible para el viaje, seleccione otro juguete';
+            }
+        }
+    }
 
      // Funcionalidad del boton "Confirmar Viaje"
     botonConfirmar.addEventListener('click', () => {
@@ -186,10 +216,10 @@ const inicializar = () => {
         }
 
         estamosIzq = true;
-        naftaUsada = 0;
+        naftaRestante = totalNafta;
         actualizarBarraProgreso();
         cajaMensaje.innerHTML = 'Seleccione dos juguetes del lado izquierdo para iniciar el viaje';
-    };
+    }
 
     botonResetear.addEventListener('click', resetear);
     botonVolverJugar.addEventListener('click', () => {
@@ -198,6 +228,6 @@ const inicializar = () => {
     });
 
     actualizarBarraProgreso();
-};
+}
 
 inicializar();
