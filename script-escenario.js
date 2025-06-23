@@ -161,7 +161,7 @@ const inicializar = async () => {
                 // Actualizamos estado del programa
                 estamosIzq = !estamosIzq;
                 bote.classList.toggle('right');
-                naftaRestante -= (totalNafta - naftaViaje);
+                naftaRestante = naftaViaje;
                 actualizarBarraProgreso();
 
                 const mensaje = estamosIzq
